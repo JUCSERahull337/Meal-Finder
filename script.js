@@ -4,9 +4,7 @@ const meals = document.getElementById('meals');
 const heading = document.getElementById('heading');
 const mealsDiv= document.getElementById('mealsDiv')
 
-//submit.addEventListener('click', searchMeal)
-
-
+submit.addEventListener('click', searchMeal)
 function searchMeal() {
 //   e.preventDefault();
   heading.innerHTML = "";
@@ -23,7 +21,7 @@ function searchMeal() {
         } else {
           meals.innerHTML = data.meals.map((meal) => `
           
-            <div class="meal" onclick="mealInfo('${meal.strMeal}')">
+            <div class="meal" onclick="displayMealInfo('${meal.idMeal}')">
                 <img src="${meal.strMealThumb}" alt="${meal.strMeal}"/>
                 <div class="meal-info" data-mealID="${meal.idMeal}">
                     <h5 class="text-center">${meal.strMeal}</h5>
@@ -38,17 +36,29 @@ function searchMeal() {
     alert("Please enter your favorite item");
   }
 }
-submit.addEventListener("click", searchMeal);
+const displayMealInfo = name => {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`
+    fetch(url)
+    .then(res => res.json())
+    .then(data => renderMealInfo(data.meals));
+}
 
-// mealsDiv.addEventListener('click', function(event){
-//     //console.log('clicked')
-
-// })
-const mealInfo = name =>{
-    
-   const url=`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name.idMeal}`
-    console.log(url)
-
+const renderMealInfo = meals => {
+    meals.forEach(meal => {
+        const mealDetail = document.getElementById("mealDetails")
+        mealDetail.innerHTML = `
+        <img src="${meal.strMealThumb}">
+        <h2>${meal.strMeal}</h2>
+        <ul>
+            <li>${meal.strIngredient1}</li>
+            <li>${meal.strIngredient2}</li>
+            <li>${meal.strIngredient3}</li>
+            <li>${meal.strIngredient4}</li>
+            <li>${meal.strIngredient5}</li>
+            <li>${meal.strIngredient6}</li>
+        </ul>
+        `
+    }); 
 }
 
 
