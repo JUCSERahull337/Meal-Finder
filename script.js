@@ -36,8 +36,8 @@ function searchMeal() {
     alert("Please enter your favorite item");
   }
 }
-const displayMealInfo = name => {
-    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${name}`
+const displayMealInfo = id => {
+    const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     fetch(url)
     .then(res => res.json())
     .then(data => renderMealInfo(data.meals));
