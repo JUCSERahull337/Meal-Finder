@@ -9,12 +9,12 @@ function searchMeal() {
 //   e.preventDefault();
   heading.innerHTML = "";
   const searchValue = search.value;
-  console.log(searchValue);
+  //console.log(searchValue);
   if (searchValue.trim()) {
     fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${searchValue}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         heading.innerHTML = `<h2 class="text-center" >Search results for '${searchValue}':</h2>`;
         if (data.meals === null) {
           heading.innerHTML = `<h2 class="text-center">There are no such meal as '${searchValue}'. Try again!</h2>`;
