@@ -33,7 +33,9 @@ function searchMeal() {
       });
     search.value = "";
   } else {
+    document.getElementById('container').innerHTML='';
     alert("Please enter your favorite item");
+    
   }
 }
 const displayMealInfo = id => {
@@ -60,5 +62,3 @@ const renderMealInfo = meals => {
         `
     }); 
 }
-
-
